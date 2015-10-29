@@ -1,4 +1,4 @@
-require('../scss/index.scss')
+require('index.scss')
 
 let Vue = require('vue')
 let App = require('app.vue')
