@@ -4,7 +4,7 @@ var webpack = require('webpack');
 module.exports = {
     entry: './src/es6/index.es6',
     output: {
-        path: __dirname + '/public',
+        path: __dirname + '/public/js',
         filename: 'index.js'
     },
     module: {
@@ -16,10 +16,6 @@ module.exports = {
             {
                 loader: 'babel-loader',
                 test: /\.es6$/
-            },
-            {
-                loaders: ['style', 'css?sourceMap', 'sass?sourceMap'],
-                test: /\.scss$/
             }
         ]
     },
