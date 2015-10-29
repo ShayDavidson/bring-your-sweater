@@ -10,19 +10,28 @@ module.exports = {
     module: {
         loaders: [
             {
+                loader: 'vue',
+                test: /\.vue$/
+            },
+            {
                 loader: 'babel-loader',
-                test: path.join(__dirname, 'es6'),
+                test: /\.es6$/
+            },
+            {
+                loaders: ['style', 'css?sourceMap', 'sass?sourceMap'],
+                test: /\.scss$/
             }
         ]
     },
     plugins: [
-        // Avoid publishing files when compilation fails
         new webpack.NoErrorsPlugin()
     ],
     stats: {
-        // Nice colored output
         colors: true
     },
-    // Create Sourcemaps for the bundle
-    devtool: 'source-map',
+    resolve: {
+		modulesDirectories: ['.', 'src/es6', 'src/scss', 'src/vue', 'node_modules'],
+		extensions: ['', '.es6', '.js', '.scss', '.vue']
+	},
+    devtool: 'source-map'
 };
