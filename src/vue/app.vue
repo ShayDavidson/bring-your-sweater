@@ -3,15 +3,16 @@
         prefix-input-field(
             class="location-input"
             prefix="I'm traveling to "
+            focus=true
         )
 
 </template>
 
 <style lang="less">
-    @import "../less/variables.less";
+    @import (reference) "../less/mixins.less";
 
     body, html {
-        font-size: @base-font-size;
+        .base-font();
         width: 100%;
         height: 100%;
         margin: 0;
