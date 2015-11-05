@@ -19,6 +19,11 @@ module.exports = {
             }
         ]
     },
+    vue: {
+        loaders: {
+            scss: 'sass'
+        }
+    },
     plugins: [
         new webpack.NoErrorsPlugin()
     ],
@@ -26,8 +31,8 @@ module.exports = {
         colors: true
     },
     resolve: {
-		modulesDirectories: ['.', 'src/es6', 'src/scss', 'src/vue', 'node_modules'],
-		extensions: ['', '.es6', '.js', '.scss', '.vue']
+		modulesDirectories: ['.', 'src/es6', 'src/less', 'src/vue', 'node_modules'],
+		extensions: ['', '.es6', '.js', '.less', '.vue']
 	},
     devtool: 'source-map'
 };

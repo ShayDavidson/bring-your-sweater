@@ -1,16 +1,31 @@
-<template>
+<template lang="jade">
+    .input-container
+        prefix-input-field(
+            class="location-input"
+            prefix="I'm traveling to "
+        )
 
 </template>
 
-<style lang="sass">
-    @import "../scss/variables.scss";
+<style lang="less">
+    @import "../less/variables.less";
 
     body, html {
+        font-size: @base-font-size;
         width: 100%;
         height: 100%;
         margin: 0;
         background-color: #eee;
-        font-size: $base-font-size;
         box-sizing: border-box;
     }
 </style>
+
+<script>
+    import PrefixInputField from "./prefix_input_field.vue"
+
+    export default {
+      components: {
+        PrefixInputField
+      }
+    }
+</script>
