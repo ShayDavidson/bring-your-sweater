@@ -1,15 +1,15 @@
 {
   "name": "bring-your-sweater",
-  "description": "What cloths to bring when travelling.",
+  "description": "What clothes to bring when travelling.",
   "author": "Shay Davidson <shay.h.davidson@gmail.com>",
   "version": "0.0.1",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/rot-13/sweater"
+    "url": "https://github.com/rot-13/bring-your-sweater"
   },
   "bugs": {
-    "url": "https://github.com/rot-13/sweater/issues"
+    "url": "https://github.com/rot-13/bring-your-sweater/issues"
   },
   "devDependencies": {
     "babel-core": "^5.8.29",
