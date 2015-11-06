@@ -1,6 +1,6 @@
 <template lang="jade">
     body
-        static-map.map(:val="location")
+        static-map.map(:location.sync="location")
         .inputs-container
             prefix-input-field(:val.sync="location", prefix="I'm traveling to ", focus=true)
 </template>
@@ -42,7 +42,7 @@
     export default {
         data () {
             return {
-                location: ''
+                location: null
             };
         },
 

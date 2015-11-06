@@ -5,6 +5,7 @@
             input(
                 v-model="val"
                 v-el:input
+                debounce="500"
                 type="text"
                 placeholder="..."
             )

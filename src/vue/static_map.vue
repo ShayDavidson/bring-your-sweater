@@ -1,7 +1,6 @@
 <template lang="jade">
     .static-map
-        .internal-map(v-el:map-day)
-        .internal-map(v-el:map-night)
+        .internal-map(v-el:map, :style="mapBackground")
 </template>
 
 <style lang="less">
@@ -12,37 +11,34 @@
         top: 0;
         width: 100%;
         height: 100%;
-        filter: blur(4px);
+        filter: blur(6px);
     }
 </style>
 
 <script>
     import GoogleMapsAPI from "googlemaps";
 
-    const DEFAULT_LOCATION = "Barcelona"
+    const DEFAULT_LOCATION = "Barcelona";
     const MAX_SIZE = 640;
 
     export default {
         props: ["location"],
 
-        created () {
-          this.mapsAPI = new GoogleMapsAPI({key: require('keys.json').google});
+        computed: {
+            mapBackground () {
+                let baseMapParams = {
+                    center: this.location ? this.location : DEFAULT_LOCATION,
+                    zoom: 10,
+                    size: `${MAX_SIZE}x${MAX_SIZE}`,
+                    maptype: "roadmap"
+                };
+                let mapURL = this.mapsAPI.staticMap(baseMapParams);
+                return `background-image: url('${mapURL}')`;
+            }
         },
 
-        ready () {
-            let styles = require('map_styles.json')
-            let baseMapParams = {
-                center: DEFAULT_LOCATION,
-                zoom: 15,
-                size: `${MAX_SIZE}x${MAX_SIZE}`,
-                maptype: 'roadmap',
-                style: styles.day
-            };
-            let dayURL = this.mapsAPI.staticMap(baseMapParams);
-            let nightURL = this.mapsAPI.staticMap(baseMapParams);
-
-            this.$els.mapDay.style['background-image'] = `url(${dayURL})`;
-            this.$els.mapNight.style['background-image'] = `url(${nightURL})`;
+        created () {
+          this.mapsAPI = new GoogleMapsAPI({key: require('keys.json').google});
         }
     }
 </script>
