@@ -30,18 +30,19 @@
         },
 
         ready () {
+            let styles = require('map_styles.json')
             let baseMapParams = {
                 center: DEFAULT_LOCATION,
                 zoom: 15,
                 size: `${MAX_SIZE}x${MAX_SIZE}`,
                 maptype: 'roadmap',
-                style: []
+                style: styles.day
             };
             let dayURL = this.mapsAPI.staticMap(baseMapParams);
             let nightURL = this.mapsAPI.staticMap(baseMapParams);
 
             this.$els.mapDay.style['background-image'] = `url(${dayURL})`;
-            this.$els.mapNight  .style['background-image'] = `url(${nightURL})`;
+            this.$els.mapNight.style['background-image'] = `url(${nightURL})`;
         }
     }
 </script>

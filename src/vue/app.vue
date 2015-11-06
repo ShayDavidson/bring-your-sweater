@@ -12,6 +12,7 @@
 
     body, input {
         .base-font();
+        background-color: @color-gray;
     }
 
     .inputs-container {
