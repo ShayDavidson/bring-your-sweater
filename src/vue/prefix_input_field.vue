@@ -1,8 +1,8 @@
 <template lang="jade">
-    .prefix-input-field-wrapper
+    .prefix-input-field
         .prefix-input-field-prefix {{prefix}}
         span.prefix-input-field-span
-            input.prefix-input-field(
+            input(
                 v-model="val"
                 v-el:input
                 type="text"
@@ -14,7 +14,7 @@
     @import (reference) "~variables.less";
     @import (reference) "~mixins.less";
 
-    .prefix-input-field-wrapper {
+    .prefix-input-field {
         background-color: @color-white;
         border-radius: @base-border-radius;
         padding: @base-inner-padding;
@@ -36,7 +36,7 @@
         .prefix-input-field-span {
             flex-grow: 100;
 
-            .prefix-input-field {
+            input {
                 background-color: transparent;
                 border: none;
                 outline: none;
@@ -48,10 +48,10 @@
 
 <script>
     export default {
-      props: ["prefix", "focus", "val"],
+        props: ["prefix", "focus", "val"],
 
-      ready() {
-          this.$els.input.focus()
-      }
+        ready() {
+            if (this.focus) this.$els.input.focus()
+        }
     }
 </script>

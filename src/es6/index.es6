@@ -2,7 +2,7 @@ let Vue = require('vue')
 let App = require('app.vue')
 
 new Vue({
-  el: 'body',
+  el: 'html',
   components: {
     app: App
   }

@@ -1,11 +1,8 @@
 <template lang="jade">
-    .inputs-container
-        prefix-input-field(
-            :val.sync="location"
-            prefix="I'm traveling to "
-            focus=true
-        )
-
+    body
+        static-map.map(:val="location")
+        .inputs-container
+            prefix-input-field(:val.sync="location", prefix="I'm traveling to ", focus=true)
 </template>
 
 <style lang="less">
@@ -20,6 +17,8 @@
     .inputs-container {
         width: 100%;
         height: 100%;
+        position: absolute;
+        top: 0;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -28,19 +27,27 @@
             width: @base-content-width;
         }
     }
+
+    .map {
+        width: 100%;
+        height: 100%;
+    }
 </style>
 
 <script>
-    import PrefixInputField from "prefix_input_field.vue"
+    import StaticMap from "static_map.vue";
+    import PrefixInputField from "prefix_input_field.vue";
 
     export default {
         data () {
             return {
                 location: ''
-            }
+            };
         },
+
         components: {
-            PrefixInputField
+            PrefixInputField,
+            StaticMap
         }
     }
 </script>
