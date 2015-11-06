@@ -3,6 +3,7 @@
         .prefix-input-field-prefix {{prefix}}
         span.prefix-input-field-span
             input.prefix-input-field(
+                v-model="val"
                 v-el:input
                 type="text"
                 placeholder="..."
@@ -10,8 +11,8 @@
 </template>
 
 <style lang="less">
-    @import (reference) "../less/variables.less";
-    @import (reference) "../less/mixins.less";
+    @import (reference) "~variables.less";
+    @import (reference) "~mixins.less";
 
     .prefix-input-field-wrapper {
         background-color: @color-white;
@@ -34,9 +35,8 @@
 
         .prefix-input-field-span {
             flex-grow: 100;
-            
+
             .prefix-input-field {
-                .base-font();
                 background-color: transparent;
                 border: none;
                 outline: none;
@@ -48,7 +48,7 @@
 
 <script>
     export default {
-      props: ["prefix", "focus"],
+      props: ["prefix", "focus", "val"],
 
       ready() {
           this.$els.input.focus()

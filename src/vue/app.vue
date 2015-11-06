@@ -1,7 +1,7 @@
 <template lang="jade">
     .inputs-container
         prefix-input-field(
-            class="location-input"
+            :val.sync="location"
             prefix="I'm traveling to "
             focus=true
         )
@@ -9,17 +9,12 @@
 </template>
 
 <style lang="less">
-    @import (reference) "../less/variables.less";
-    @import (reference) "../less/mixins.less";
+    @import "~reset.less";
+    @import (reference) "~variables.less";
+    @import (reference) "~mixins.less";
 
-    body, html {
+    body, input {
         .base-font();
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        background-color: #eee;
-        box-sizing: border-box;
     }
 
     .inputs-container {
@@ -36,11 +31,16 @@
 </style>
 
 <script>
-    import PrefixInputField from "./prefix_input_field.vue"
+    import PrefixInputField from "prefix_input_field.vue"
 
     export default {
-      components: {
-        PrefixInputField
-      }
+        data () {
+            return {
+                location: ''
+            }
+        },
+        components: {
+            PrefixInputField
+        }
     }
 </script>
