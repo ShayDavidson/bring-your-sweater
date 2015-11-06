@@ -1,6 +1,6 @@
 <template lang="jade">
     .static-map
-        .internal-map(v-el:map, :style="mapBackground")
+        .internal-map(v-el:map, :style="{ backgroundImage: 'url(' + mapURL + ')' }")
 </template>
 
 <style lang="less">
@@ -25,15 +25,14 @@
         props: ["location"],
 
         computed: {
-            mapBackground () {
+            mapURL () {
                 let baseMapParams = {
                     center: this.location ? this.location : DEFAULT_LOCATION,
                     zoom: 10,
                     size: `${MAX_SIZE}x${MAX_SIZE}`,
                     maptype: "roadmap"
                 };
-                let mapURL = this.mapsAPI.staticMap(baseMapParams);
-                return `background-image: url('${mapURL}')`;
+                return this.mapsAPI.staticMap(baseMapParams);
             }
         },
 
