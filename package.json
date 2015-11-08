@@ -12,9 +12,11 @@
     "url": "https://github.com/rot-13/bring-your-sweater/issues"
   },
   "dependencies": {
+    "bluebird": "^3.0.5",
+    "google-geocoder": "^0.1.4",
     "google-maps-image-api-url": "^1.0.1",
-    "instagram-node-lib": "^0.1.1",
     "underscore": "^1.8.3",
+    "urijs": "^1.16.1",
     "vue": "^1.0.3"
   },
   "devDependencies": {
