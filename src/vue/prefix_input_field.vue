@@ -20,6 +20,7 @@
         border-radius: @base-border-radius;
         padding: @base-inner-padding;
         border: 0.125em solid @color-pink;
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
         box-sizing: border-box;
         white-space: nowrap;
         display: inline-flex;

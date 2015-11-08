@@ -11,7 +11,7 @@
         top: 0;
         width: 100%;
         height: 100%;
-        filter: blur(6px);
+        filter: blur(5px);
     }
 </style>
 
@@ -22,6 +22,7 @@
     const DEFAULT_LOCATION = _.sample(require("default_locations.json"));
     const MAX_SIZE = 640;
     const ZOOM = 10;
+    const ROAD_COLOR = "0xFFAEAE";
 
     export default {
         props: ["location"],
@@ -39,6 +40,7 @@
             this.baseMapParams = {
                 key: require("keys.json").google,
                 zoom: ZOOM,
+                style: [`feature:road.highway|color:${ROAD_COLOR}`, "feature:road|element:labels|visibility:off"],
                 size: `${MAX_SIZE}x${MAX_SIZE}`,
                 maptype: "roadmap"
             }
