@@ -1,8 +1,9 @@
 <template lang="jade">
     body
-        static-map.map(:location.sync="location")
+        static-map(:location.sync="location")
         .inputs-container
             prefix-input-field(:val.sync="location", prefix="I'm traveling to ", focus=true)
+        instafeed(:location.sync="location")
 </template>
 
 <style lang="less">
@@ -38,6 +39,7 @@
 <script>
     import StaticMap from "static_map.vue";
     import PrefixInputField from "prefix_input_field.vue";
+    import Instafeed from "instafeed.vue";
 
     export default {
         data () {
@@ -48,7 +50,8 @@
 
         components: {
             PrefixInputField,
-            StaticMap
+            StaticMap,
+            Instafeed
         }
     }
 </script>
