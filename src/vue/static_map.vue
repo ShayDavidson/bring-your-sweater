@@ -16,28 +16,32 @@
 </style>
 
 <script>
-    import GoogleMapsAPI from "googlemaps";
+    import GoogleMapsURL from "google-maps-image-api-url";
+    import _ from "underscore"
 
-    const DEFAULT_LOCATION = "Barcelona";
+    const DEFAULT_LOCATION = _.sample(require("default_locations.json"));
     const MAX_SIZE = 640;
+    const ZOOM = 10;
 
     export default {
         props: ["location"],
 
         computed: {
             mapURL () {
-                let baseMapParams = {
-                    center: this.location ? this.location : DEFAULT_LOCATION,
-                    zoom: 10,
-                    size: `${MAX_SIZE}x${MAX_SIZE}`,
-                    maptype: "roadmap"
+                let params = {
+                    center: this.location ? this.location : DEFAULT_LOCATION
                 };
-                return this.mapsAPI.staticMap(baseMapParams);
+                return GoogleMapsURL(Object.assign(params, this.baseMapParams));
             }
         },
 
         created () {
-          this.mapsAPI = new GoogleMapsAPI({key: require('keys.json').google});
+            this.baseMapParams = {
+                key: require("keys.json").google,
+                zoom: ZOOM,
+                size: `${MAX_SIZE}x${MAX_SIZE}`,
+                maptype: "roadmap"
+            }
         }
     }
 </script>
