@@ -1,5 +1,7 @@
 <template lang="jade">
     .instafeed
+        div.polaroid(v-for="item in items")
+            img(:src="item.imgURL")
 </template>
 
 <style lang="less">
@@ -19,14 +21,14 @@
     Promise.promisifyAll(JSONP);
     Promise.promisifyAll(Geocoder);
 
-    const INSTAGRAM_BASE_URI = "https://api.instagram.com/v1/media/search"
+    const INSTAGRAM_BASE_URI = "https://api.instagram.com/v1/media/search";
 
     export default {
         props: ["location"],
 
         data () {
             return {
-                items: [] // items are imgs URLs.
+                items: [] // items are objects with these properties: `imgURL`.
             }
         },
 
@@ -45,8 +47,10 @@
                     });
                     return JSONP.requestAsync(url.toString()).then((results) => {
                         this.items = _.map(results.data, (result) => {
-                            return result.images.standard_resolution.url;
-                        })
+                            return {
+                                imgURL: result.images.standard_resolution.url
+                            }
+                        });
                     });
                 });
             }
