@@ -18,7 +18,7 @@
     .prefix-input-field {
         background-color: @color-white;
         border-radius: @base-border-radius;
-        padding: @base-inner-padding;
+        padding: 0.3em 0.5em;
         border: 0.125em solid @color-pink;
         box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
         box-sizing: border-box;

@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "google-maps-image-api-url": "^1.0.1",
-    "instafeed.js": "^1.4.0",
+    "instagram-node-lib": "^0.1.1",
     "underscore": "^1.8.3",
     "vue": "^1.0.3"
   },

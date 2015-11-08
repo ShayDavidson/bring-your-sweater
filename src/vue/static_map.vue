@@ -11,13 +11,13 @@
         top: 0;
         width: 100%;
         height: 100%;
-        filter: blur(5px);
+        filter: blur(5px) brightness(85%);
     }
 </style>
 
 <script>
+    import _ from "underscore";
     import GoogleMapsURL from "google-maps-image-api-url";
-    import _ from "underscore"
 
     const DEFAULT_LOCATION = _.sample(require("default_locations.json"));
     const MAX_SIZE = 640;
@@ -40,7 +40,11 @@
             this.baseMapParams = {
                 key: require("keys.json").google,
                 zoom: ZOOM,
-                style: [`feature:road.highway|color:${ROAD_COLOR}`, "feature:road|element:labels|visibility:off"],
+                style: [
+                    `feature:road.highway|color:${ROAD_COLOR}`,
+                     "feature:road|element:labels|visibility:off",
+                     "feature:all|element:labels|visibility:off"
+                 ],
                 size: `${MAX_SIZE}x${MAX_SIZE}`,
                 maptype: "roadmap"
             }
