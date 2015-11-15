@@ -1,9 +1,10 @@
 <template lang="jade">
     body
         static-map(:location.sync="location")
-        .inputs-container
+        .center-container
+            instafeed(:location.sync="location")
+        .center-container
             prefix-input-field(:val.sync="location", prefix="I'm traveling to ", focus=true)
-        instafeed(:location.sync="location")
 </template>
 
 <style lang="less">
@@ -16,7 +17,7 @@
         background-color: @color-gray;
     }
 
-    .inputs-container {
+    .center-container {
         width: 100%;
         height: 100%;
         position: absolute;
@@ -26,6 +27,7 @@
         justify-content: center;
 
         > div {
+            display: inline-flex;
             width: @base-content-width;
         }
     }

@@ -1,11 +1,36 @@
 <template lang="jade">
     .instafeed
-        div.polaroid(v-for="item in items")
+        div.polaroid(v-for="item in items", class="polaroid-number-{{$index}}")
             img(:src="item.imgURL")
 </template>
 
 <style lang="less">
+    @import (reference) "~variables.less";
+    @import (reference) "~mixins.less";
+
+    @polaroid-size: 4em;
+
     .instafeed {
+        position: relative;
+        width: 100%;
+        height: 100%;
+
+        .polaroid {
+            width: @polaroid-size;
+            height: @polaroid-size;
+            position: absolute;
+            top: 0;
+            left: 0;
+            padding: 0.25em;
+            border-radius: 0.1em;
+            background-color: @color-white;
+            .base-shadow();
+
+            img {
+                width: @polaroid-size;
+                height: @polaroid-size;
+            }
+        }
     }
 </style>
 
@@ -46,11 +71,12 @@
                         lng: geo.lng
                     });
                     return JSONP.requestAsync(url.toString()).then((results) => {
-                        this.items = _.map(results.data, (result) => {
+                        let items = _.map(results.data, (result) => {
                             return {
                                 imgURL: result.images.standard_resolution.url
                             }
                         });
+                        this.items = _.first(items, 8);
                     });
                 });
             }

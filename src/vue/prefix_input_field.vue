@@ -1,5 +1,5 @@
 <template lang="jade">
-    .prefix-input-field
+    .prefix-input-field(v-on:click="focusInput")
         .prefix-input-field-prefix {{prefix}}
         span.prefix-input-field-span
             input(
@@ -20,11 +20,10 @@
         border-radius: @base-border-radius;
         padding: 0.3em 0.5em;
         border: 0.125em solid @color-pink;
-        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
         box-sizing: border-box;
         white-space: nowrap;
-        display: inline-flex;
         width: 100%;
+        .base-shadow();
 
         .prefix-input-field-prefix {
             display: inline-block;
@@ -53,7 +52,14 @@
         props: ["prefix", "focus", "val"],
 
         ready() {
-            if (this.focus) this.$els.input.focus()
+            if (this.focus) this.focusInput();
+        },
+
+        methods: {
+            focusInput() {
+                console.log('erm');
+                this.$els.input.focus();
+            }
         }
     }
 </script>
