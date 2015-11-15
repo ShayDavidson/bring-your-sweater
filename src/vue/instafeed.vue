@@ -9,9 +9,9 @@
     @import (reference) "~mixins.less";
 
     @polaroid-size: 4em;
+    @polaroid-padding: 0.25em;
 
     .instafeed {
-        position: relative;
         width: 100%;
         height: 100%;
 
@@ -19,16 +19,57 @@
             width: @polaroid-size;
             height: @polaroid-size;
             position: absolute;
-            top: 0;
-            left: 0;
-            padding: 0.25em;
-            border-radius: 0.1em;
+            box-sizing: border-box;
+            margin-top: ~"calc((100vh - @{polaroid-size}) / 2)";
+            margin-left: ~"calc((100vw - @{polaroid-size}) / 2)";
+            padding: @polaroid-padding;
             background-color: @color-white;
             .base-shadow();
 
             img {
-                width: @polaroid-size;
-                height: @polaroid-size;
+                width: @polaroid-size - (@polaroid-padding * 2);
+                height: @polaroid-size - (@polaroid-padding * 2);
+            }
+
+            &.polaroid-number-0 {
+                transform: rotate(2deg);
+                top: -4em;
+                left: -8em;
+            }
+            &.polaroid-number-1 {
+                transform: rotate(1deg);
+                top: -5em;
+                left: -2.6em;
+            }
+            &.polaroid-number-2 {
+                transform: rotate(0deg);
+                top: -5em;
+                left: 2.6em;
+            }
+            &.polaroid-number-3 {
+                transform: rotate(-2deg);
+                top: -4em;
+                left: 8em;
+            }
+            &.polaroid-number-4 {
+                transform: rotate(-1deg);
+                top: 4em;
+                left: -8em;
+            }
+            &.polaroid-number-5 {
+                transform: rotate(3deg);
+                top: 5em;
+                left: -2.6em;
+            }
+            &.polaroid-number-6 {
+                transform: rotate(0deg);
+                top: 5em;
+                left: 2.6em;
+            }
+            &.polaroid-number-7 {
+                transform: rotate(1deg);
+                top: 4em;
+                left: 8em;
             }
         }
     }

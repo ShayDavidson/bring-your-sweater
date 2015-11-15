@@ -28,6 +28,9 @@
 
         > div {
             display: inline-flex;
+        }
+
+        .prefix-input-field {
             width: @base-content-width;
         }
     }
