@@ -12,6 +12,9 @@
     @polaroid-padding: 0.25em;
     @polaroid-ellipse-width: 41vw;
     @polaroid-ellipse-height: 26vh;
+    @polaroid-hover-scale: 1.75;
+    @polaroid-z-index: 100;
+    
     @number-of-polaroids: 16;
 
     .instafeed {
@@ -27,7 +30,9 @@
             margin-left: ~"calc((100vw - @{polaroid-size}) / 2)";
             padding: @polaroid-padding;
             background-color: @color-white;
-            z-index: 100;
+            z-index: @polaroid-z-index;
+            cursor: pointer;
+            transition: transform 0.1s ease-out;
             .base-shadow();
 
             img {
@@ -45,6 +50,11 @@
                     transform: rotate(((mod(@i, 2) * 4) - 2) * (mod(@i, 8) - 4deg));
                 }
                 .polaroids(@n, (@i + 1));
+            }
+
+            &:hover {
+                transform: scale(@polaroid-hover-scale);
+                z-index: @polaroid-z-index + 1;
             }
         }
     }
