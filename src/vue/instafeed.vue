@@ -10,6 +10,9 @@
 
     @polaroid-size: 4em;
     @polaroid-padding: 0.25em;
+    @polaroid-ellipse-width: 41vw;
+    @polaroid-ellipse-height: 26vh;
+    @number-of-polaroids: 16;
 
     .instafeed {
         width: 100%;
@@ -24,6 +27,7 @@
             margin-left: ~"calc((100vw - @{polaroid-size}) / 2)";
             padding: @polaroid-padding;
             background-color: @color-white;
+            z-index: 100;
             .base-shadow();
 
             img {
@@ -31,45 +35,16 @@
                 height: @polaroid-size - (@polaroid-padding * 2);
             }
 
-            &.polaroid-number-0 {
-                transform: rotate(2deg);
-                top: -4em;
-                left: -8em;
-            }
-            &.polaroid-number-1 {
-                transform: rotate(1deg);
-                top: -5em;
-                left: -2.6em;
-            }
-            &.polaroid-number-2 {
-                transform: rotate(0deg);
-                top: -5em;
-                left: 2.6em;
-            }
-            &.polaroid-number-3 {
-                transform: rotate(-2deg);
-                top: -4em;
-                left: 8em;
-            }
-            &.polaroid-number-4 {
-                transform: rotate(-1deg);
-                top: 4em;
-                left: -8em;
-            }
-            &.polaroid-number-5 {
-                transform: rotate(3deg);
-                top: 5em;
-                left: -2.6em;
-            }
-            &.polaroid-number-6 {
-                transform: rotate(0deg);
-                top: 5em;
-                left: 2.6em;
-            }
-            &.polaroid-number-7 {
-                transform: rotate(1deg);
-                top: 4em;
-                left: 8em;
+            .polaroids(@number-of-polaroids);
+
+            .polaroids(@n, @i: 0) when (@i < @n) {
+                &.polaroid-number-@{i} {
+                    @angle: @i * (2 * pi() / @n);
+                    top: @polaroid-ellipse-height * sin(@angle);
+                    left: @polaroid-ellipse-width * cos(@angle);
+                    transform: rotate(((mod(@i, 2) * 4) - 2) * (mod(@i, 8) - 4deg));
+                }
+                .polaroids(@n, (@i + 1));
             }
         }
     }
@@ -87,6 +62,7 @@
     Promise.promisifyAll(JSONP);
     Promise.promisifyAll(Geocoder);
 
+    const NUMBER_OF_POLAROIDS = 16;
     const INSTAGRAM_BASE_URI = "https://api.instagram.com/v1/media/search";
 
     export default {
@@ -117,7 +93,7 @@
                                 imgURL: result.images.standard_resolution.url
                             }
                         });
-                        this.items = _.first(items, 8);
+                        this.items = _.first(items, NUMBER_OF_POLAROIDS);
                     });
                 });
             }

@@ -57,7 +57,6 @@
 
         methods: {
             focusInput() {
-                console.log('erm');
                 this.$els.input.focus();
             }
         }

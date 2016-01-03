@@ -11,6 +11,8 @@
         top: 0;
         width: 100%;
         height: 100%;
+        pointer-events: none;
+        user-select: none;
         filter: blur(5px) brightness(85%);
     }
 </style>
